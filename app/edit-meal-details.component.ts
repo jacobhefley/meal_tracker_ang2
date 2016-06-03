@@ -5,8 +5,8 @@ import {Meal} from './meal.model';
   selector: 'edit-meal-details',
   inputs: ['meal'],
   template: `
-  <div class = "input-group">
-    <h1>Edit</h1>
+  <div class = "jumbotron">
+    <h3>Edit (Cheat)</h3>
     <div class="form-group">
       <label for="name">Name</label>
       <input placeholder="Name" type="text" class="form-control" [(ngModel)]="meal.name" required #newName>

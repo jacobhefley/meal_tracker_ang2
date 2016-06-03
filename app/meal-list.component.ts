@@ -12,20 +12,33 @@ import {HealthyPipe} from './healthy.pipe';
   directives: [MealComponent, EditMealDetailsComponent, NewMealComponent],
   pipes: [HealthyPipe],
   template: `
-  <h1>Meal tracker</h1>
-  <select (change)="onChange($event.target.value)" class="filter">
-    <option value="all" selected="selected">Show All</option>
-    <option value="healthy">Show Healthy</option>
-    <option value="notHealthy" >Show Not Healthy</option>
-  </select>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand">Meal tracker</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <form class="navbar-form navbar-right">
+        <new-meal (onSubmitNewMeal)="createMeal($event)"></new-meal>
+        <select (change)="onChange($event.target.value)" class="filter">
+          <option value="all" selected="selected">Show All</option>
+          <option value="healthy">Show Healthy</option>
+          <option value="notHealthy" >Show Not Healthy</option>
+        </select>
+      </form>
+
+    </div><!--/.navbar-collapse -->
+  </div>
+</nav>
+<div class = "container">
+<edit-meal-details *ngIf="selectedMeal" [meal]="selectedMeal">
+</edit-meal-details>
   <meal-display *ngFor="#currentMeal of mealList | display:filterHealthy"
     (click)="mealClicked(currentMeal)"
     [class.selected]="currentMeal === selectedMeal"
     [meal]="currentMeal">
   </meal-display>
-  <edit-meal-details *ngIf="selectedMeal" [meal]="selectedMeal">
-  </edit-meal-details>
-  <new-meal (onSubmitNewMeal)="createMeal($event)"></new-meal>
+  </div>
   `
 })
 

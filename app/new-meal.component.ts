@@ -5,23 +5,16 @@ import {Meal} from './meal.model';
   selector: 'new-meal',
   outputs: ['onSubmitNewMeal'],
   template: `
-
-  <div class = "input-group">
-    <h1>New</h1>
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input placeholder="Name" type="text" class="form-control" required #newName>
-    </div>
-    <div class="form-group">
-      <label for="details">Details</label>
-      <input placeholder="Details" type="text" class="form-control" #newDetails>
-    </div>
-    <div class="form-group">
-      <label for="calories">Calories</label>
-      <input placeholder="Calories" type="text" class="form-control" #newCalories>
-    </div>
-    <button (click)="logMeal(newName,newDetails,newCalories)" type="submit" class="btn btn-default">Log</button>
+  <div class="form-group">
+    <input placeholder="Name" type="text" class="form-control" required #newName>
   </div>
+  <div class="form-group">
+    <input placeholder="Details" type="text" class="form-control" required #newDetails>
+  </div>
+  <div class="form-group">
+    <input placeholder="Calories" type="text" class="form-control" required #newCalories>
+  </div>
+  <button (click)="logMeal(newName,newDetails,newCalories)" type="submit" class="btn btn-default">Log</button>
 
   `
 })
@@ -31,8 +24,14 @@ export class NewMealComponent {
     this.onSubmitNewMeal = new EventEmitter();
   }
   logMeal(newName: HTMLInputElement, newDetails: HTMLInputElement, newCalories: HTMLInputElement){
-    var newMeal = new Meal (newName.value, newDetails.value, parseInt(newCalories.value));
-    this.onSubmitNewMeal.emit(newMeal);
+    var name = newName.value;
+    var details = newDetails.value;
+    var calories = parseInt(newCalories.value);
+    if(name.length>1 && details.length>1 && calories>0){
+      var newMeal = new Meal (name, details, calories);
+      this.onSubmitNewMeal.emit(newMeal);
+    }
+    else;
     newName.value = "";
     newDetails.value = "";
     newCalories.value = "";

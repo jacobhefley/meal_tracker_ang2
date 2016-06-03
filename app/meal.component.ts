@@ -6,10 +6,10 @@ import { Meal } from './meal.model';
     inputs: ['meal'],
   template: `
   <div>
-    <div class = "jumbotron">
-      <p>{{ meal.name }}</p>
-      <p>{{ meal.details }}</p>
-      <p>{{ meal.calories }}</p>
+    <div class = "jumbotron" >
+      <p><strong>Name: </strong> {{ meal.name }}</p>
+      <p><strong>Details: </strong>{{ meal.details }}</p>
+      <p><strong>Calories: </strong>{{ meal.calories }}</p>
     </div>
   </div>
   `
@@ -17,7 +17,4 @@ import { Meal } from './meal.model';
 
 export class MealComponent {
   public meal: Meal;
-  // toggleDone(setState: boolean) {
-  //   this.meal.done = setState;
-  // }
 }
