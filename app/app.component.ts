@@ -1,29 +1,28 @@
 import { Component, EventEmitter } from 'angular2/core';
-import { TaskListComponent } from './task-list.component';
-import { Task } from './task.model';
+import { MealListComponent } from './meal-list.component';
+import { Meal } from './meal.model';
 
 @Component({
   selector: 'my-app',
-  directives: [TaskListComponent],
+  directives: [MealListComponent],
   template: `
+
   <div class="container">
-  <h1>Meal tracker</h1>
-  <task-list [taskList]="tasks" (onTaskSelect)="taskWasSelected($event)"></task-list>
+    <meal-list [mealList]="meals" (onMealSelect)="mealWasSelected($event)"></meal-list>
   </div>
+
   `
 })
 
 export class AppComponent {
-  public tasks: Task[];
+  public meals: Meal[];
   constructor(){
-    this.tasks = [
-      new Task("Create To-Do List app.", 0),
-      new Task("Learn Kung Fu.", 1),
-      new Task("Rewatch all the Lord of the Rings movies.", 2),
-      new Task("Do the laundry.", 3)
+    this.meals = [
+      new Meal("Hamburger", "Didn't get a soda or cheese on my burger!", 354),
+      new Meal("Fries", "I only ate half of them.", 365),
     ];
   }
-  taskWasSelected(clickedTask: Task): void {
-    console.log('parent', clickedTask);
+  mealWasSelected(clickedMeal: Meal): void {
+    console.log('parent', clickedMeal);
   }
 }

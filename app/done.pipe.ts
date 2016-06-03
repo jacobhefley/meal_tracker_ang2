@@ -1,21 +1,21 @@
 import {Pipe, PipeTransform} from 'angular2/core';
-import {Task} from './task.model';
+import {Meal} from './meal.model';
 
 @Pipe({
   name: "done",
   pure: false
 })
 export class DonePipe implements PipeTransform {
-  transform(input: Task[], args) {
-    console.log('selected task: ', args[1]);
+  transform(input: Meal[], args) {
+    console.log('selected meal: ', args[1]);
     var desiredDoneState = args[0];
     if(desiredDoneState === "done") {
-      return input.filter(function(task) {
-        return task.done;
+      return input.filter(function(meal) {
+        return meal.done;
       });
     } else if (desiredDoneState === "notDone") {
-      return input.filter((task) => {
-        return !task.done;
+      return input.filter((meal) => {
+        return !meal.done;
       });
     } else {
       return input;
