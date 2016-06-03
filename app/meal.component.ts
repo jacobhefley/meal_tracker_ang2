@@ -17,7 +17,7 @@ import { Meal } from './meal.model';
 
 export class MealComponent {
   public meal: Meal;
-  toggleDone(setState: boolean) {
-    this.meal.done = setState;
-  }
+  // toggleDone(setState: boolean) {
+  //   this.meal.done = setState;
+  // }
 }

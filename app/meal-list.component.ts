@@ -3,22 +3,22 @@ import { MealComponent } from './meal.component';
 import { Meal } from './meal.model';
 import {EditMealDetailsComponent} from './edit-meal-details.component';
 import { NewMealComponent } from './new-meal.component';
-import {DonePipe} from './done.pipe';
+import {HealthyPipe} from './healthy.pipe';
 
 @Component({
   selector: 'meal-list',
   inputs: ['mealList'],
   outputs: ['onMealSelect'],
   directives: [MealComponent, EditMealDetailsComponent, NewMealComponent],
-  pipes: [DonePipe],
+  pipes: [HealthyPipe],
   template: `
   <h1>Meal tracker</h1>
   <select (change)="onChange($event.target.value)" class="filter">
-    <option value="all">Show All</option>
-    <option value="done">Show Done</option>
-    <option value="notDone" selected="selected">Show Not Done</option>
+    <option value="all" selected="selected">Show All</option>
+    <option value="healthy">Show Healthy</option>
+    <option value="notHealthy" >Show Not Healthy</option>
   </select>
-  <meal-display *ngFor="#currentMeal of mealList | done:filterDone"
+  <meal-display *ngFor="#currentMeal of mealList | display:filterHealthy"
     (click)="mealClicked(currentMeal)"
     [class.selected]="currentMeal === selectedMeal"
     [meal]="currentMeal">
@@ -33,7 +33,7 @@ export class MealListComponent {
   public mealList: Meal[];
   public onMealSelect: EventEmitter<Meal>;
   public selectedMeal: Meal;
-  public filterDone: string = "notDone";
+  public filterHealthy: string = "all";
   constructor() {
     this.onMealSelect = new EventEmitter();
   }
@@ -46,7 +46,7 @@ export class MealListComponent {
   this.mealList.push(toAdd);
   }
   onChange(filterOption) {
-    this.filterDone = filterOption;
-    console.log(this.filterDone);
+    this.filterHealthy = filterOption;
+    console.log(this.filterHealthy);
   }
 }

@@ -20,6 +20,7 @@ export class AppComponent {
     this.meals = [
       new Meal("Hamburger", "Didn't get a soda or cheese on my burger!", 354),
       new Meal("Fries", "I only ate half of them.", 365),
+      new Meal("Big Meal", "Bulking season", 1000),
     ];
   }
   mealWasSelected(clickedMeal: Meal): void {
